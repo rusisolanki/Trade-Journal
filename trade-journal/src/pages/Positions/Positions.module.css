@@ -1,0 +1,25 @@
+.container{
+    margin-top: 10px;   
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 100%;
+    overflow: hidden;
+}
+.buttonContainer{
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+.button{
+    background-color: transparent;
+    color: black;
+    border: 2px solid black;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.button:hover{
+    background-color: rgb(33, 37, 41);
+    border: 2px solid white;
+}

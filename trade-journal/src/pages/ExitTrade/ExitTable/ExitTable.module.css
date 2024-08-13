@@ -1,0 +1,12 @@
+.container{
+    margin-top: 10px;   
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 100%;
+    overflow: hidden;
+}
+.heading{
+    background: rgb(33, 37, 41) !important;
+    color: #fff !important; 
+}

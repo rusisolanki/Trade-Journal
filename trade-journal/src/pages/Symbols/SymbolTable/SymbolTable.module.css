@@ -1,0 +1,14 @@
+.container{
+    margin-top: 10px;   
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 100%;
+    overflow: hidden;
+}
+.heading{
+    background: rgb(33, 37, 41) !important;
+    color: #fff !important; 
+    border-right: 2px solid rgba(255, 255, 255, 0.54);
+    padding: 10px 20px !important;
+}
