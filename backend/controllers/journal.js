@@ -1,7 +1,7 @@
 import {db} from '../db.js'
 
 export const getJournal = (req, res) => {
-    const q = 'SELECT * FROM journal.journals'
+    const q = 'SELECT * FROM journals.journal'
     db.query(q, (err, data) => {
         if(err){
             return res.json(err)
@@ -13,7 +13,7 @@ export const getJournal = (req, res) => {
 
 export const postJournal = (req, res) => {
     console.log(req.body)
-    db.query('INSERT INTO journal.journals SET ?', req.body, (err, result) => {
+    db.query('INSERT INTO journals.journal SET ?', req.body, (err, result) => {
         if(err){
             return res.json(err)
         }

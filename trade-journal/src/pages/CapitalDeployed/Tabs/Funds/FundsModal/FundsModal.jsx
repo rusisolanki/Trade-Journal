@@ -1,36 +1,31 @@
-import JournalModal from "../../../components/Modal/Modal";
+import JournalModal from "../../../../../components/Modal/Modal";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { modalActions } from "../../../../../store/store";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { modalActions } from "../../../store/store";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-const ExitModal = () => {
-  const [newExitTrade, setNewExitTrade] = useState({
-    exit_date: null,
-    exit_quantity: 0,
-    exit_price: 0,
-    charges: 0,
-    trade_id: null,
-  });
-  const dispatch = useDispatch()
-  const tradeID = useSelector(state => state.idReducer.tradeID)
+const FundsModal = () => {
+    const dispatch = useDispatch()
+    const [fundsData, setFundsData] = useState()
+    const { id } = useParams()
 
   const changeHandler = (e) => {
-    setNewExitTrade({
-      ...newExitTrade,
+    setFundsData({
+      ...fundsData,
       [e.target.name]: e.target.value,
-      trade_id: tradeID,
+      journal_id: id
     });
   };
 
   const submitHandler = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/exit/${tradeID}`,
-        newExitTrade
+        `http://localhost:3000/capital-deployed`,
+        fundsData
       );
       console.log(response);
     } catch (error) {
@@ -42,40 +37,32 @@ const ExitModal = () => {
   return (
     <JournalModal>
       <Modal.Header>
-        <Modal.Title>Add Symbols</Modal.Title>
+        <Modal.Title>Add Funds</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Group className="mb-3">
-            <Form.Label>Exit Date</Form.Label>
+            <Form.Label>Date</Form.Label>
             <Form.Control
               type="date"
-              name="exit_date"
+              name="funds_date"
               autoFocus
               onChange={changeHandler}
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Quantity</Form.Label>
-            <Form.Control
-              type="number"
-              name="exit_quantity"
-              onChange={changeHandler}
-            />
+            <Form.Label>Type</Form.Label>
+            <Form.Select aria-label="Default select example" onChange={changeHandler} name="funds_type">
+              <option>Select</option>
+              <option value="Deposit">Deposit</option>
+              <option value="Withdraw">Withdraw</option>
+            </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Exit Price</Form.Label>
+            <Form.Label>Amount</Form.Label>
             <Form.Control
               type="number"
-              name="exit_price"
-              onChange={changeHandler}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Charges</Form.Label>
-            <Form.Control
-              type="number"
-              name="charges"
+              name="funds_amount"
               onChange={changeHandler}
             />
           </Form.Group>
@@ -93,5 +80,4 @@ const ExitModal = () => {
   );
 };
 
-
-export default ExitModal;
+export default FundsModal;

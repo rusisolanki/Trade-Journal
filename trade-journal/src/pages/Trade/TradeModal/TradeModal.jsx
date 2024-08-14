@@ -18,7 +18,7 @@ const TradeModal = () => {
     stoploss: 0,
     charges: 0,
     symbol_id: null,
-    journals_id: null
+    journal_id: null
   })
   const dispatch = useDispatch()
   const [symbolList, setSymbolList] = useState([])
@@ -34,7 +34,7 @@ const TradeModal = () => {
   }, [])
 
   const changeHandler = (e) => {
-    setNewTrade({...newTrade, [e.target.name] : e.target.value, journals_id: id })
+    setNewTrade({...newTrade, [e.target.name] : e.target.value, journal_id: id })
     
   }
 

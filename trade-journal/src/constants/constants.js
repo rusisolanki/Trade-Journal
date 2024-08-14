@@ -3,6 +3,6 @@ export const headings = {
     symbols: ['ID', 'SYMBOL', 'NAME', 'SECTOR', 'INDUSTRY'],
     capital: ['Date', 'Type', 'Amount'],
     adjustments: ['Date', 'Type', 'Amount'],
-    entry: ['Entry Date', 'Quantity', 'Entry Price', 'SL', 'SL%', 'Position Size', 'RPT'],
+    entry: ['Entry Date', 'Entry Price', 'Quantity', 'SL', 'SL%', 'Position Size', 'RPT'],
     exit: ['Exit Date', 'Exit Quantity', 'Exit Price', 'Exit%', 'R Multiple', 'Days', 'Profit'],
 }

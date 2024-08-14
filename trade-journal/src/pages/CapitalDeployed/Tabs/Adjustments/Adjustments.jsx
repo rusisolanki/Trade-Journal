@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const Adjustments = () => {
   const adjustments = useSelector((state) => state.adjustmentReducer.adjustment)
+  // console.log(adjustments[0].adjust)
   return (
     <JournalTables>
       <thead>
