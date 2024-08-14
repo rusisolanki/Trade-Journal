@@ -4,11 +4,13 @@ import classes from "./Journal.module.css";
 import { LuPlus } from "react-icons/lu";
 import Button from "react-bootstrap/esm/Button";
 import JournalList from "./JournalList/JournalList";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/store";
+import NewJournalModal from "./JournalModal/JournalModal";
 
 function Journal() {
   const dispatch = useDispatch()
+  const showModal = useSelector(state => state.modalReducer.showModal)
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -23,6 +25,7 @@ function Journal() {
       <div>
         <JournalList />
       </div>
+      {showModal && <NewJournalModal/>}
     </>
   );
 }
