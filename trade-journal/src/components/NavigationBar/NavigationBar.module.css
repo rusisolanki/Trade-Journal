@@ -1,0 +1,25 @@
+.nav{
+    padding: 7px 20px;
+    background-color: #E9E9E5 !important;
+}
+.heading{
+    background-color: #E9E9E5 !important;
+    color: black !important;
+    padding: 10px 20px !important;
+}
+.button{
+    background-color: transparent;
+    color: black;
+    border: 1px solid #b7b7b2;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.button:hover{
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+.link{
+    text-decoration: none;
+}

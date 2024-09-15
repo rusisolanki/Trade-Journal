@@ -10,11 +10,14 @@ import axios from "axios";
 const NewJournalModal = () => {
   const dispatch = useDispatch();
   const [journalData, setJournalData] = useState();
+  const user = JSON.parse(localStorage.getItem('user'))
+  console.log(user.id)
 
   const changeHandler = (e) => {
     setJournalData({
       ...journalData,
       [e.target.name]: e.target.value,
+      user_id: user.id
     });
   };
 
@@ -55,8 +58,8 @@ const NewJournalModal = () => {
               name="type"
             >
               <option>Select</option>
-              <option value="Income">Equity</option>
-              <option value="Expense">Future</option>
+              <option value="Equity">Equity</option>
+              <option value="Future">Future</option>
             </Form.Select>
           </Form.Group>
         </Form>

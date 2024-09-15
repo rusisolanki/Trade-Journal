@@ -21,8 +21,6 @@ function JournalModal({ children }) {
   );
 }
 JournalModal.propTypes = {
-  setShowModal: PropTypes.func,
-  showModal: PropTypes.bool,
   children: PropTypes.array
 };
 

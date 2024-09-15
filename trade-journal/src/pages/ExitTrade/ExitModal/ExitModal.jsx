@@ -8,41 +8,53 @@ import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../../store/store";
 
 const ExitModal = () => {
-  const [newExitTrade, setNewExitTrade] = useState({
-    exit_date: null,
-    exit_quantity: 0,
-    exit_price: 0,
-    charges: 0,
-    trade_id: null,
-  });
-  const dispatch = useDispatch()
-  const tradeID = useSelector(state => state.idReducer.tradeID)
+  const [exitDate, setExitDate] = useState(null);
+  const [exitQuantity, setExitQuantity] = useState(null);
+  const [exitPrice, setExitPrice] = useState(null);
+  const [charges, setCharges] = useState(null);
+  const dispatch = useDispatch();
+  const tradeID = useSelector((state) => state.idReducer.tradeID);
+  const tradeData = useSelector((state) => state.tradeReducer.trade);
 
-  const changeHandler = (e) => {
-    setNewExitTrade({
-      ...newExitTrade,
-      [e.target.name]: e.target.value,
-      trade_id: tradeID,
-    });
-  };
+  const entryTrade = tradeData.filter((trade) => trade.id == tradeID);
+  const days = Math.round(
+    Math.abs(
+      (new Date(entryTrade[0].date) - new Date(exitDate)) /
+        (24 * 60 * 60 * 1000)
+    )
+  );
+  const profit = (
+    (exitPrice - entryTrade[0].entry_price) *
+    exitQuantity
+  ).toFixed(0);
+
 
   const submitHandler = async () => {
+    const updatedExitTrade = {
+      exit_date: exitDate,
+      exit_quantity: exitQuantity,
+      exit_price: exitPrice,
+      charges: charges,
+      trade_id: tradeID,
+      exit_days: days,
+      profit: profit,
+    };
     try {
       const response = await axios.post(
         `http://localhost:3000/exit/${tradeID}`,
-        newExitTrade
+        updatedExitTrade
       );
       console.log(response);
     } catch (error) {
       console.log(error);
     }
-    dispatch(modalActions.change(false))
+    dispatch(modalActions.change(false));
   };
 
   return (
     <JournalModal>
       <Modal.Header>
-        <Modal.Title>Add Symbols</Modal.Title>
+        <Modal.Title>Add Exit</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -52,7 +64,7 @@ const ExitModal = () => {
               type="date"
               name="exit_date"
               autoFocus
-              onChange={changeHandler}
+              onChange={(e) => setExitDate(e.target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -60,7 +72,7 @@ const ExitModal = () => {
             <Form.Control
               type="number"
               name="exit_quantity"
-              onChange={changeHandler}
+              onChange={(e) => setExitQuantity(e.target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -68,7 +80,7 @@ const ExitModal = () => {
             <Form.Control
               type="number"
               name="exit_price"
-              onChange={changeHandler}
+              onChange={(e) => setExitPrice(e.target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -76,13 +88,16 @@ const ExitModal = () => {
             <Form.Control
               type="number"
               name="charges"
-              onChange={changeHandler}
+              onChange={(e) => setCharges(e.target.value)}
             />
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => dispatch(modalActions.change(false))}>
+        <Button
+          variant="secondary"
+          onClick={() => dispatch(modalActions.change(false))}
+        >
           Close
         </Button>
         <Button variant="primary" onClick={submitHandler}>
@@ -92,6 +107,5 @@ const ExitModal = () => {
     </JournalModal>
   );
 };
-
 
 export default ExitModal;

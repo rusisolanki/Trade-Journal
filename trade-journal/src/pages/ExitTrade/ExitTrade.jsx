@@ -1,12 +1,14 @@
-import { Suspense, lazy } from "react";
-import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import { Suspense, lazy, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "react-bootstrap/esm/Container";
 import Button from "react-bootstrap/esm/Button";
 import classes from './ExitTrade.module.css'
 import { LuPlus } from "react-icons/lu";
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import ExitModal from "./ExitModal/ExitModal";
-import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/store";
+import AddNote from "./AddNote/AddNote";
+import AddNoteModal from "./AddNote/AddNoteModal/AddNoteModal";
 
 const ExitTable = lazy(() =>
   import("./ExitTable/ExitTable")
@@ -15,6 +17,17 @@ const ExitTable = lazy(() =>
 const ExitTrade = () => {
   const dispatch = useDispatch()
   const showModal = useSelector(state => state.modalReducer.showModal)
+  const [modalOption, setModalOption] = useState(true)
+
+  const exitTradeButton = () => {
+    setModalOption(false)
+    dispatch(modalActions.change(true))
+  }
+  const addNoteButton = () => {
+    setModalOption(true)
+    dispatch(modalActions.change(true))
+  }
+
   return (
     <div>
       <div>
@@ -22,9 +35,13 @@ const ExitTrade = () => {
       </div>
       <Container className={classes.container}>
         <div className={classes.buttonContainer}>
-          <Button className={classes.button} onClick={() => dispatch(modalActions.change(true))}>
+          <Button className={classes.button} onClick={exitTradeButton}>
             <LuPlus fontSize="1.1em" />
             Exit Trade
+          </Button>
+          <Button className={classes.button} onClick={addNoteButton}>
+            <LuPlus fontSize="1.1em" />
+            Add Note
           </Button>
         </div>
         <div>
@@ -32,10 +49,12 @@ const ExitTrade = () => {
             <ExitTable />
           </Suspense>
         </div>
+        <div>
+          <AddNote/>
+        </div>
       </Container>
-      {showModal && (
-        <ExitModal />
-      )}
+      {showModal ? (modalOption ?
+        <AddNoteModal /> : <ExitModal/>) : '' }
     </div>
   );
 };

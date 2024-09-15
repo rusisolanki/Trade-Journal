@@ -7,19 +7,33 @@ import JournalList from "./JournalList/JournalList";
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/store";
 import NewJournalModal from "./JournalModal/JournalModal";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Journal() {
   const dispatch = useDispatch()
   const showModal = useSelector(state => state.modalReducer.showModal)
+  const user = localStorage.getItem('user')
+  const logoutHandler = async () => {
+    await axios.post('http://localhost:3000/authentication/logout')
+    localStorage.removeItem('user')
+  }
   return (
     <>
-      <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar className={classes.nav}>
         <Container>
           <Navbar.Brand href="#">TradeJournal</Navbar.Brand>
+          {user && 
+          <div className={classes.buttonContainer}>
           <Button className={classes.button} onClick={() => dispatch(modalActions.change(true))}>
             <LuPlus fontSize="1.1em" />
             Add Journal
           </Button>
+           <Link to='/authentication/login' className={classes.link}><Button className={classes.button} onClick={logoutHandler}>
+            Logout
+          </Button>
+          </Link>
+          </div>}
         </Container>
       </Navbar>
       <div>

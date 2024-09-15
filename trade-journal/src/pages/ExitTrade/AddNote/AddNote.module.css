@@ -1,0 +1,14 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.notesList{
+    margin-top: 10px;
+}
+.notes{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(190, 190, 190, 0.6);
+}

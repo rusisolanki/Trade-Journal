@@ -1,12 +1,25 @@
+.nav{
+    padding: 7px 20px;
+    background-color: #E9E9E5 !important;
+    border-bottom: 1px solid #DAD9D5;
+}
+.buttonContainer{
+    display: flex;
+    gap: 10px
+}
 .button{
     background-color: transparent;
-    color: white;
-    border: 2px solid white;
+    color: black;
+    border: 1px solid #c9c9c3;
     display: flex;
     gap: 5px;
     align-items: center;
 }
 .button:hover{
-    background-color: rgb(33, 37, 41);
-    border: 2px solid white;
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+}
+.link{
+    text-decoration: none;
 }

@@ -6,6 +6,10 @@ const journalInitialState = {
 
 const tradesInitialState = {
   trade: [],
+  tradeTableRef: null
+};
+const positionsInitialState = {
+  position: [],
 };
 
 const exitTradeState = {
@@ -21,6 +25,9 @@ const fundsInitialState = {
 const adjustmentsInitialState = {
   adjustment: [],
 };
+const noteInitialState = {
+  note: [],
+};
 
 const modalInitialState = {
   showModal: false,
@@ -28,7 +35,8 @@ const modalInitialState = {
 
 const idState = {
   journalID: null,
-  tradeID: null
+  journalType: '',
+  tradeID: null,
 }
 
 const tradeSlice = createSlice({
@@ -37,6 +45,19 @@ const tradeSlice = createSlice({
   reducers: {
     change(state, action) {
       state.trade = action.payload;
+    },
+    changeTableRef(state, action) {
+      state.tradeTableRef = action.payload;
+    }
+  },
+});
+
+const positionSlice = createSlice({
+  name: "position",
+  initialState: positionsInitialState,
+  reducers: {
+    change(state, action) {
+      state.position = action.payload;
     },
   },
 });
@@ -92,6 +113,16 @@ const adjustmentSlice = createSlice({
   },
 });
 
+const noteSlice = createSlice({
+  name: "notes",
+  initialState: noteInitialState,
+  reducers: {
+    change(state, action) {
+      state.note = action.payload;
+    },
+  },
+});
+
 const modalSlice = createSlice({
   name: "modal",
   initialState: modalInitialState,
@@ -111,28 +142,35 @@ const idSlice = createSlice({
     },
     changeTrade(state, action){
       state.tradeID = action.payload
+    },
+    changeType(state, action){
+      state.journalType = action.payload
     }
   },
 });
 
 export const tradeActions = tradeSlice.actions;
+export const positionActions = positionSlice.actions;
 export const exitTradeActions = exitTradeSlice.actions;
 export const symbolActions = symbolSlice.actions;
 export const journalActions = journalSlice.actions;
 export const modalActions = modalSlice.actions;
 export const fundActions = fundSlice.actions;
 export const adjustmentActions = adjustmentSlice.actions;
+export const noteActions = noteSlice.actions;
 export const idActions = idSlice.actions;
 
 const store = configureStore({
   reducer: {
     tradeReducer: tradeSlice.reducer,
+    positionReducer: positionSlice.reducer,
     exitTradeReducer: exitTradeSlice.reducer,
     symbolReducer: symbolSlice.reducer,
     journalReducer: journalSlice.reducer,
     modalReducer: modalSlice.reducer,
     fundReducer: fundSlice.reducer,
     adjustmentReducer: adjustmentSlice.reducer,
+    noteReducer: noteSlice.reducer,
     idReducer: idSlice.reducer,
   },
 });

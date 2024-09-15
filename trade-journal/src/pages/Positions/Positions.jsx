@@ -1,34 +1,20 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import {lazy, Suspense } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/esm/Button";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
-import classes from "./Positions.module.css";
 import Container from "react-bootstrap/esm/Container";
 import { LuPlus } from "react-icons/lu";
 import TradeModal from "../Trade/TradeModal/TradeModal";
-import axios from "axios";
+import { modalActions } from "../../store/store";
+const PositionsTable = lazy(() => 
+  import('../Positions/PositionsTable/PositionsTable')
+)
+import classes from "./Positions.module.css";
 
-const TradeTable = lazy(() =>
-  import("../Trade/TradeTable/TradeTable")
-);
 
 const Positions = () => {
-  const [showModal, setShowModal] = useState(false)
-  const [totalTrades, setTotalTrades] = useState([]);
-
-  useEffect(() => {
-    const fetchTradeData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/trades");
-        const tradeData = response.data;
-        // dispatch(tradeActions.change(tradeData));
-        setTotalTrades(tradeData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchTradeData();
-  }, [totalTrades]);
+  const dispatch = useDispatch()
+  const showModal = useSelector(state => state.modalReducer.showModal)
 
   return (
     <div>
@@ -37,18 +23,18 @@ const Positions = () => {
       </div>
       <Container className={classes.container}>
       <div className={classes.buttonContainer}>
-          <Button className={classes.button} onClick={() => setShowModal(true)}>
+          <Button className={classes.button} onClick={() => dispatch(modalActions.change(true))}>
             <LuPlus fontSize="1.1em" />
             New Trade
           </Button>
         </div>
         <div>
           <Suspense fallback={<div>Loading...</div>}>
-            <TradeTable totalTrades={totalTrades} />
+            <PositionsTable />
           </Suspense>
         </div>
       </Container>
-      {showModal && <TradeModal setShowModal={setShowModal} showModal={showModal}/>}
+      {showModal && <TradeModal/>}
     </div>
   );
 };

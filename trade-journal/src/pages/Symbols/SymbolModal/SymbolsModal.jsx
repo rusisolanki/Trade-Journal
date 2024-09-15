@@ -15,9 +15,11 @@ const SymbolsModal = () => {
     name: "",
     sector: "",
     industry: "",
+    lot_size: 0,
     journal_id: null,
   });
   const { id } = useParams();
+  const journalType = localStorage.getItem('Type')
 
   const dispatch = useDispatch();
 
@@ -75,6 +77,14 @@ const SymbolsModal = () => {
               onChange={changeHandler}
             />
           </Form.Group>
+          {journalType !== null && journalType === 'Future' && <Form.Group className="mb-3">
+            <Form.Label>Lot Size</Form.Label>
+            <Form.Control
+              type="number"
+              name="lot_size"
+              onChange={changeHandler}
+            />
+          </Form.Group>}
         </Form>
       </Modal.Body>
       <Modal.Footer>
