@@ -15,6 +15,7 @@ const ExitModal = () => {
   const dispatch = useDispatch();
   const tradeID = useSelector((state) => state.idReducer.tradeID);
   const tradeData = useSelector((state) => state.tradeReducer.trade);
+  const journalType = localStorage.getItem('Type')
 
   const entryTrade = tradeData.filter((trade) => trade.id == tradeID);
   const days = Math.round(
@@ -23,11 +24,14 @@ const ExitModal = () => {
         (24 * 60 * 60 * 1000)
     )
   );
-  const profit = (
-    (exitPrice - entryTrade[0].entry_price) *
-    exitQuantity
-  ).toFixed(0);
 
+  const profit = journalType === 'Future' ? (
+    (exitPrice - entryTrade[0].entry_price) *
+    exitQuantity * entryTrade[0].lot_size
+  ).toFixed(0) : ((exitPrice - entryTrade[0].entry_price) *
+  exitQuantity).toFixed(0)
+
+  
 
   const submitHandler = async () => {
     const updatedExitTrade = {

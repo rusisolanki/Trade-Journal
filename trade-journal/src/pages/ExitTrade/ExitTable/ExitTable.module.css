@@ -34,8 +34,16 @@
 .plus{
     color: green;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 .minus{
     color: red;
     font-weight: 500;
+    display: flex;
+    gap: 5px;
+}
+.weightedAvg{
+    font-size: 0.7em;
 }

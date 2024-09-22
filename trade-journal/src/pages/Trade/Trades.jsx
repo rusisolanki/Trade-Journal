@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { useDownloadExcel } from 'react-export-table-to-excel';
+// import { useDownloadExcel } from 'react-export-table-to-excel';
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import { LuPlus } from "react-icons/lu";
 import { PiExport } from "react-icons/pi";
@@ -17,13 +17,13 @@ const TradeTable = lazy(() =>
 const Trades = () => {
   const dispatch = useDispatch()
   const showModal = useSelector(state => state.modalReducer.showModal)
-  const tableRef = useSelector(state => state.tradeReducer.tradeTableRef)
+  // const tableRef = useSelector(state => state.tradeReducer.tradeTableRef)
 
-  const { onDownload } = useDownloadExcel({
-      currentTableRef: tableRef,
-      filename: 'Users table',
-      sheet: 'Users'
-  })
+  // const { onDownload } = useDownloadExcel({
+  //     currentTableRef: tableRef,
+  //     filename: 'Users table',
+  //     sheet: 'Users'
+  // })
   
   return (
     <div>
@@ -36,7 +36,7 @@ const Trades = () => {
             <LuPlus fontSize="1.1em" />
             New Trade
           </Button>
-          <Button className={classes.button} onClick={onDownload}>
+          <Button className={classes.button}>
             <PiExport fontSize="1.1em" />
             Export
           </Button>

@@ -1,18 +1,19 @@
 import {db} from '../db.js'
 
-export const getExitTrade = (req, res) => {
-    const q = 'SELECT * FROM journals.exit WHERE trade_id = ? ORDER BY exit_date'
+export const getNote = (req, res) => {
+    const q = 'SELECT * FROM notes WHERE trade_id = ?'
     db.query(q, [req.params.id], (err, data) => {
         if(err){
             return res.json(err)
         }
+        
         return res.status(201).json(data)
     })
 }
 
-
-export const postExitTrade = (req, res) => {
-    db.query('INSERT INTO journals.exit SET ?', req.body, (err, result) => {
+export const postNote = (req, res) => {
+    console.log(req.body)
+    db.query('INSERT INTO journals.notes SET ?', req.body, (err, result) => {
         if(err){
             return res.json(err)
         }

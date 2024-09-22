@@ -1,11 +1,10 @@
+import { useState } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 import JournalModal from "../../../components/Modal/Modal";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
-import PropTypes from "prop-types";
-import { useState } from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
 import { modalActions } from "../../../store/store";
 import { useParams } from "react-router-dom";
 
@@ -102,9 +101,6 @@ const SymbolsModal = () => {
   );
 };
 
-SymbolsModal.propTypes = {
-  setShowModal: PropTypes.func,
-  showModal: PropTypes.bool,
-};
+
 
 export default SymbolsModal;

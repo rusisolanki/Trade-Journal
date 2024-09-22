@@ -1,7 +1,9 @@
 .positionSummary{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin: 10px 0;
+    gap: 10px;
 }
 .container{
     background-color: #F9F9F8;
@@ -12,6 +14,9 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 10px;
+}
+.percentage{
+    font-size: 0.75em;
 }
 .data{
     font-size: 1.5rem;

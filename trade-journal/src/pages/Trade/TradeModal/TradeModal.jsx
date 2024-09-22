@@ -26,9 +26,11 @@ const TradeModal = () => {
   });
   const [stopLoss, setStopLoss] = useState(0)
   let totalFunds = 0;
+  let totalAdjustments = 0
   const dispatch = useDispatch();
   const [symbolList, setSymbolList] = useState([]);
   const [fundsList, setFundsList] = useState([]);
+  const [adjustmentsList, setAdjustmentsList] = useState([]);
   const { id } = useParams(); //Accessing the journal id from the url
   const trades = useSelector((state => state.tradeReducer.trade))
   const journalType = localStorage.getItem('Type')
@@ -36,14 +38,20 @@ const TradeModal = () => {
 
   // Calculating profits of all the trades in order to calculate account value
   const totalTradeProfit = trades.reduce((sum, trade) => {
-    return sum += (trade.totalProfit - trade.totalCharges)
+     return (trade.totalProfit - (trade.totalCharges + trade.charges))
   }, 0)
   
   // Fetching symbols to add in the dropdown list of selecting symbols
   useEffect(() => {
     const symbolHandler = async () => {
       const list = await axios.get("http://localhost:3000/symbols/symbols");
-      setSymbolList(list.data);
+      const filteredSymbolData = list.data.filter(symbol => symbol.lot_size)
+      if(journalType === 'Future'){
+      setSymbolList(filteredSymbolData);
+      }
+      if(journalType === 'Equity'){
+        setSymbolList(list.data)
+      }
     };
     symbolHandler();
   }, []);
@@ -51,8 +59,9 @@ const TradeModal = () => {
   useEffect(() => {
     const fundsHandler = async () => {
       const list = await axios.get(`http://localhost:3000/capital-deployed/${id}`);
+      console.log(list.data)
       setFundsList(list.data[0])
-      console.log(list.data[0])
+      setAdjustmentsList(list.data[1])
     };
     fundsHandler();
   }, []);
@@ -67,6 +76,14 @@ const TradeModal = () => {
         totalFunds -= fundsList[i].funds_amount;
       }
     }
+    for (let i = 0; i < adjustmentsList.length; i++) {
+      if (adjustmentsList[i].adjustments_type === "Income") {
+        totalAdjustments += adjustmentsList[i].adjustments_amount;
+      }
+      if (adjustmentsList[i].adjustments_type === "Expense") {
+        totalAdjustments -= adjustmentsList[i].adjustments_amount;
+      }
+    }
 
     setNewTrade({
       ...newTrade,
@@ -75,7 +92,7 @@ const TradeModal = () => {
       current_stoploss: stopLoss,
       journal_id: id,
       capital: totalFunds,
-      account_value: totalFunds + totalTradeProfit
+      account_value: totalFunds + totalAdjustments + totalTradeProfit
     });
   };
 
@@ -85,6 +102,7 @@ const TradeModal = () => {
         "http://localhost:3000/trades",
         newTrade
       );
+      console.log(response)
     } catch (error) {
       console.log(error);
     }
@@ -98,6 +116,7 @@ const TradeModal = () => {
       </Modal.Header>
       <Modal.Body>
         <Form>
+          {journalType === 'Future' && <h6 style={{color: "red"}}>NOTE: Please confirm the lot size before you add a trade</h6>}
           <Form.Group className="mb-3">
             <Form.Label>Symbol</Form.Label>
             <Form.Select
