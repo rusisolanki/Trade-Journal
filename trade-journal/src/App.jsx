@@ -2,7 +2,7 @@ import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom'
 import CapitalDeployed from './pages/CapitalDeployed/CapitalDeployed'
 import ExitTrade from './pages/ExitTrade/ExitTrade'
 import Positions from './pages/Positions/Positions'
-import Summary from './pages/Summary/Summary'
+// import Summary from './pages/Summary/Summary'
 import Symbols from './pages/Symbols/Symbols'
 import Trades from './pages/Trade/Trades'
 import Journal from './pages/Journal/Journal'
@@ -34,10 +34,10 @@ const router = createBrowserRouter([
     path: '/:id/positions',
     element: <Positions/>
   },
-  {
-    path: '/:id/summary',
-    element: <Summary/>
-  },
+  // {
+  //   path: '/:id/summary',
+  //   element: <Summary/>
+  // },
   {
     path: '/:id/capital-deployed',
     element: <CapitalDeployed/>,
