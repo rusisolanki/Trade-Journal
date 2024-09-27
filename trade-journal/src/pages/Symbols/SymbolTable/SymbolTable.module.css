@@ -7,8 +7,26 @@
     overflow: hidden;
 }
 .heading{
-    background: rgb(33, 37, 41) !important;
-    color: #fff !important; 
-    border-right: 2px solid rgba(255, 255, 255, 0.54);
+    background-color: #E9E9E5 !important;
+    color: black !important;
     padding: 10px 20px !important;
+}
+.button{
+    background-color: transparent;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 2px solid #CFCFC9;
+    padding: 0 10px;
+}
+.button:hover{
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+}
+.lotSize{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

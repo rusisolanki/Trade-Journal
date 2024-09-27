@@ -4,49 +4,61 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import { useState } from "react";
 import axios from "axios";
-import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../../store/store";
 
-const ExitModal = ({ showModal, setShowModal }) => {
-  const [newExitTrade, setNewExitTrade] = useState({
-    exit_date: null,
-    exit_quantity: 0,
-    exit_price: 0,
-    charges: 0,
-    trade_id: null,
-  });
-  const dispatch = useDispatch()
-  const tradeID = useSelector(state => state.idReducer.tradeID)
+const ExitModal = () => {
+  const [exitDate, setExitDate] = useState(null);
+  const [exitQuantity, setExitQuantity] = useState(null);
+  const [exitPrice, setExitPrice] = useState(null);
+  const [charges, setCharges] = useState(null);
+  const dispatch = useDispatch();
+  const tradeID = useSelector((state) => state.idReducer.tradeID);
+  const tradeData = useSelector((state) => state.tradeReducer.trade);
+  const journalType = localStorage.getItem('Type')
 
-  const changeHandler = (e) => {
-    setNewExitTrade({
-      ...newExitTrade,
-      [e.target.name]: e.target.value,
-      trade_id: tradeID,
-    });
+  const entryTrade = tradeData.filter((trade) => trade.id == tradeID);
+  const days = Math.round(
+    Math.abs(
+      (new Date(entryTrade[0].date) - new Date(exitDate)) /
+        (24 * 60 * 60 * 1000)
+    )
+  );
 
-    console.log(newExitTrade);
-  };
+  const profit = journalType === 'Future' ? (
+    (exitPrice - entryTrade[0].entry_price) *
+    exitQuantity * entryTrade[0].lot_size
+  ).toFixed(0) : ((exitPrice - entryTrade[0].entry_price) *
+  exitQuantity).toFixed(0)
+
+  
 
   const submitHandler = async () => {
+    const updatedExitTrade = {
+      exit_date: exitDate,
+      exit_quantity: exitQuantity,
+      exit_price: exitPrice,
+      charges: charges,
+      trade_id: tradeID,
+      exit_days: days,
+      profit: profit,
+    };
     try {
       const response = await axios.post(
         `http://localhost:3000/exit/${tradeID}`,
-        newExitTrade
+        updatedExitTrade
       );
       console.log(response);
     } catch (error) {
       console.log(error);
     }
-
-    setShowModal(false);
+    dispatch(modalActions.change(false));
   };
 
   return (
-    <JournalModal showModal={showModal}>
+    <JournalModal>
       <Modal.Header>
-        <Modal.Title>Add Symbols</Modal.Title>
+        <Modal.Title>Add Exit</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -56,7 +68,7 @@ const ExitModal = ({ showModal, setShowModal }) => {
               type="date"
               name="exit_date"
               autoFocus
-              onChange={changeHandler}
+              onChange={(e) => setExitDate(e.target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -64,7 +76,7 @@ const ExitModal = ({ showModal, setShowModal }) => {
             <Form.Control
               type="number"
               name="exit_quantity"
-              onChange={changeHandler}
+              onChange={(e) => setExitQuantity(e.target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -72,7 +84,7 @@ const ExitModal = ({ showModal, setShowModal }) => {
             <Form.Control
               type="number"
               name="exit_price"
-              onChange={changeHandler}
+              onChange={(e) => setExitPrice(e.target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -80,13 +92,16 @@ const ExitModal = ({ showModal, setShowModal }) => {
             <Form.Control
               type="number"
               name="charges"
-              onChange={changeHandler}
+              onChange={(e) => setCharges(e.target.value)}
             />
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => dispatch(modalActions.change(false))}>
+        <Button
+          variant="secondary"
+          onClick={() => dispatch(modalActions.change(false))}
+        >
           Close
         </Button>
         <Button variant="primary" onClick={submitHandler}>
@@ -96,11 +111,5 @@ const ExitModal = ({ showModal, setShowModal }) => {
     </JournalModal>
   );
 };
-
-ExitModal.propTypes = {
-  showModal: PropTypes.bool,
-  setShowModal: PropTypes.func
-}
-
 
 export default ExitModal;

@@ -1,9 +1,11 @@
+import { lazy, Suspense } from "react";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
-import JournalTables from "../../components/Table/JournalTables";
-import classes from "./Summary.module.css";
 import Container from "react-bootstrap/esm/Container";
+import classes from "./Summary.module.css";
+const SummaryTable = lazy(() => import("./SummaryTable/SummaryTable"));
 
 const Summary = () => {
+ 
   return (
     <div>
       <div>
@@ -11,7 +13,9 @@ const Summary = () => {
       </div>
       <Container className={classes.container}>
         <div>
-          <JournalTables />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SummaryTable/>
+          </Suspense>
         </div>
       </Container>
     </div>

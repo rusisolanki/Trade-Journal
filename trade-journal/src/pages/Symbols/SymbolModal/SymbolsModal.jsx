@@ -1,11 +1,10 @@
+import { useState } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 import JournalModal from "../../../components/Modal/Modal";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
-import PropTypes from "prop-types";
-import { useState } from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
 import { modalActions } from "../../../store/store";
 import { useParams } from "react-router-dom";
 
@@ -15,9 +14,11 @@ const SymbolsModal = () => {
     name: "",
     sector: "",
     industry: "",
+    lot_size: 0,
     journal_id: null,
   });
   const { id } = useParams();
+  const journalType = localStorage.getItem('Type')
 
   const dispatch = useDispatch();
 
@@ -75,6 +76,14 @@ const SymbolsModal = () => {
               onChange={changeHandler}
             />
           </Form.Group>
+          {journalType !== null && journalType === 'Future' && <Form.Group className="mb-3">
+            <Form.Label>Lot Size</Form.Label>
+            <Form.Control
+              type="number"
+              name="lot_size"
+              onChange={changeHandler}
+            />
+          </Form.Group>}
         </Form>
       </Modal.Body>
       <Modal.Footer>
@@ -92,9 +101,6 @@ const SymbolsModal = () => {
   );
 };
 
-SymbolsModal.propTypes = {
-  setShowModal: PropTypes.func,
-  showModal: PropTypes.bool,
-};
+
 
 export default SymbolsModal;

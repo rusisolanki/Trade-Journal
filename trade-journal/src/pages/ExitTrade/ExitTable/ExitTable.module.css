@@ -1,3 +1,13 @@
+.trade{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(183, 183, 183, 0.6);
+    background-color: #F9F9F8;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 8px 40px 0 40px
+}
 .container{
     margin-top: 10px;   
     display: flex;
@@ -7,6 +17,33 @@
     overflow: hidden;
 }
 .heading{
-    background: rgb(33, 37, 41) !important;
-    color: #fff !important; 
+    background-color: #E9E9E5 !important;
+    color: black !important;
+}
+
+.exitStrategy{
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: 200px 200px 200px;
+    border: 1px solid rgba(183, 183, 183, 0.6);
+    background-color: #F9F9F8;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding-top: 8px;
+}
+.plus{
+    color: green;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.minus{
+    color: red;
+    font-weight: 500;
+    display: flex;
+    gap: 5px;
+}
+.weightedAvg{
+    font-size: 0.7em;
 }

@@ -1,5 +1,5 @@
 .table{
-    border: 1px solid black;
     text-wrap: nowrap;
     text-align: center;
+    border-radius: 20px !important;
 }

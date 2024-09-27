@@ -3,11 +3,23 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid #DAD9D5;
 }
 
 .button{
-    background-color: rgba(33, 37, 41, 1);
-    border: 2px solid rgba(33, 37, 41, 1);
+    background-color: #7f520b;
+    border: 1px solid #CFCFC9;
+    color: white;
     padding: 5px 30px;
+}
+.button:hover{
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+.addJournal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
 }

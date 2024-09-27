@@ -1,0 +1,60 @@
+.positionSummary{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    gap: 10px;
+}
+.container{
+    background-color: #F9F9F8;
+    border: 1px solid rgba(183, 183, 183, 0.6);
+    width: 32%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+.percentage{
+    font-size: 0.75em;
+}
+.data{
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.button{
+    background-color: transparent;
+    color: black;
+    border: 2px solid #CFCFC9;
+    padding: 0 15px;
+}
+.button:hover{
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+}
+
+.heading{
+    background-color: #E9E9E5 !important;
+    color: black !important;
+    padding: 10px 20px !important;
+}
+.plus{
+    color: green;
+    font-weight: 500;
+}
+.minus{
+    color: red;
+    font-weight: 500;
+}
+.currentStoploss{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.edit{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}

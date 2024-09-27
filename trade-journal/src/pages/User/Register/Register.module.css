@@ -1,0 +1,49 @@
+.authenticationPage{
+    display: flex;
+}
+.authentication{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0px;
+}
+.user{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.logo{
+    border: 4px solid black;
+    padding: 5px 10px;
+}
+.button{
+    background: none;
+    border: none;
+    color: rgb(0,124,61);
+    font-weight: 700;
+}
+.image{
+    width: 60%;
+}
+.tradeImage{
+    width: 100%;
+    height: 100vh;
+}
+.form{
+    width: 60%;
+}
+.heading{
+    margin: 20px 0;
+}
+.actionButton{
+    width: 100%;
+}
+.error{
+    color: red;
+}
+.success{
+    color: green;
+}
+

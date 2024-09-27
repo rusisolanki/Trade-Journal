@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+// import { useDownloadExcel } from 'react-export-table-to-excel';
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import { LuPlus } from "react-icons/lu";
 import { PiExport } from "react-icons/pi";
@@ -16,7 +17,14 @@ const TradeTable = lazy(() =>
 const Trades = () => {
   const dispatch = useDispatch()
   const showModal = useSelector(state => state.modalReducer.showModal)
+  // const tableRef = useSelector(state => state.tradeReducer.tradeTableRef)
 
+  // const { onDownload } = useDownloadExcel({
+  //     currentTableRef: tableRef,
+  //     filename: 'Users table',
+  //     sheet: 'Users'
+  // })
+  
   return (
     <div>
       <div>
