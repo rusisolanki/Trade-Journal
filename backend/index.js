@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import 'dotenv/config'
 import cookieParser from 'cookie-parser'
 import authenticationRoute from './routes/authentication.js'
 import tradeRoute from './routes/trades.js'
@@ -11,7 +12,7 @@ import noteRoute from './routes/notes.js'
 import summaryRoute from './routes/tradeSummary.js'
 
 const app = express()
-const port = process.env.port || 3000
+const port = process.env.PORT
 app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
