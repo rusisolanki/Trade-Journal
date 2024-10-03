@@ -26,7 +26,7 @@ function NavigationBar() {
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to={`/${journalID}/trades`}>Trades</Nav.Link>
             <Nav.Link as={NavLink} to={`/${journalID}/positions`}>Positions</Nav.Link>
-           <Nav.Link as={NavLink} to={`/${journalID}/summary`}>Summary</Nav.Link>
+           {/* <Nav.Link as={NavLink} to={`/${journalID}/summary`}>Summary</Nav.Link> */}
             <Nav.Link as={NavLink} to={`/${journalID}/capital-deployed`}>Capital Deployed</Nav.Link>
             <Nav.Link as={NavLink} to={`/${journalID}/symbols`}>Symbols</Nav.Link>
           </Nav>
