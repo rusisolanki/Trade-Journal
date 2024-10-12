@@ -18,7 +18,7 @@ const ExitTable = () => {
   useEffect(() => {
     const fetchTradeData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/trades/${journalID}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/trades/${journalID}`);
         setTrades(response.data);
         setIsLoading(false); // Data fetched, set loading to false
       } catch (error) {
@@ -34,7 +34,7 @@ const ExitTable = () => {
 
   useEffect(() => {
     const fetchExitTrade = async () => {
-      const exitTrade = await axios.get(`http://localhost:3000/exit/${tradeID}`);
+      const exitTrade = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/exit/${tradeID}`);
       dispatch(exitTradeActions.change(exitTrade.data));
     };
     fetchExitTrade();

@@ -14,7 +14,7 @@ const EditModal = ({edit, setEdit, tradeID}) => {
   const submitHandler = async () => {
     const current_stoploss = parseInt(currentStoploss)
     try {
-      const response = await axios.post(`http://localhost:3000/trades/edit/${tradeID}`, {current_stoploss});
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/trades/edit/${tradeID}`, {current_stoploss});
       console.log(response);
     } catch (error) {
       console.log(error);

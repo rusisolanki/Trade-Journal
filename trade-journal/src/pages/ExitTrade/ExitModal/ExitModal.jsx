@@ -45,7 +45,7 @@ const ExitModal = () => {
     };
     try {
       const response = await axios.post(
-        `http://localhost:3000/exit/${tradeID}`,
+        `${import.meta.env.VITE_BACKEND_URL}/exit/${tradeID}`,
         updatedExitTrade
       );
       console.log(response);

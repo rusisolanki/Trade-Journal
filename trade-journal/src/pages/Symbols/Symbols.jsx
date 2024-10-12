@@ -21,7 +21,7 @@ const Symbols = () => {
   useEffect(() => {
     const fetchTradeData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/symbols");
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/symbols`);
         const symbolData = response.data;
         dispatch(symbolActions.change(symbolData))
       } catch (error) {

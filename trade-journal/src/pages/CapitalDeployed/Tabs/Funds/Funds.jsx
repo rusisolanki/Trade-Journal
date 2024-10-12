@@ -15,7 +15,7 @@ const Funds = () => {
   useEffect(() => {
     const fetchFundsData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/capital-deployed/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/capital-deployed/${id}`);
         const capitalData = response.data;
         // console.log(capitalData)
         // debugger

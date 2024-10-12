@@ -17,7 +17,7 @@ const TradeTable = () => {
   useEffect(() => {
     const fetchTradeData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/trades/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/trades/${id}`);
         const tradeData = response.data;
         dispatch(tradeActions.change(tradeData));
       } catch (error) {

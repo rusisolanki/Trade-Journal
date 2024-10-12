@@ -44,7 +44,7 @@ const TradeModal = () => {
   // Fetching symbols to add in the dropdown list of selecting symbols
   useEffect(() => {
     const symbolHandler = async () => {
-      const list = await axios.get("http://localhost:3000/symbols/symbols");
+      const list = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/symbols/symbols`);
       const filteredSymbolData = list.data.filter(symbol => symbol.lot_size)
       if(journalType === 'Future'){
       setSymbolList(filteredSymbolData);
@@ -58,7 +58,7 @@ const TradeModal = () => {
 
   useEffect(() => {
     const fundsHandler = async () => {
-      const list = await axios.get(`http://localhost:3000/capital-deployed/${id}`);
+      const list = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/capital-deployed/${id}`);
       console.log(list.data)
       setFundsList(list.data[0])
       setAdjustmentsList(list.data[1])
@@ -99,7 +99,7 @@ const TradeModal = () => {
   const submitHandler = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/trades",
+        `${import.meta.env.VITE_BACKEND_URL}/trades`,
         newTrade
       );
       console.log(response)

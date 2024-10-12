@@ -24,7 +24,7 @@ const AdjustmentsModal = () => {
   const submitHandler = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/capital-deployed/adjustment`,
+        `${import.meta.env.VITE_BACKEND_URL}/capital-deployed/adjustment`,
         adjustmentsData
       );
       console.log(response.data);

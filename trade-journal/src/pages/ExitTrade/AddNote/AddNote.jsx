@@ -13,7 +13,7 @@ const AddNote = () => {
     const fetchNote = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/add-note/${tradeID}`
+          `${import.meta.env.VITE_BACKEND_URL}/add-note/${tradeID}`
         );
         
         const noteData = response.data;

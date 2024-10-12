@@ -10,7 +10,7 @@ const EditModal = ({edit, setEdit, symbolID}) => {
   const submitHandler = async () => {
     const lot_size = parseInt(lotSize)
     try {
-      const response = await axios.post(`http://localhost:3000/symbols/edit/${symbolID}`, {lot_size});
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/symbols/edit/${symbolID}`, {lot_size});
       console.log(response);
     } catch (error) {
       console.log(error);
