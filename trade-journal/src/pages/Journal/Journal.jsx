@@ -15,7 +15,7 @@ function Journal() {
   const showModal = useSelector(state => state.modalReducer.showModal)
   const user = localStorage.getItem('user')
   const logoutHandler = async () => {
-    await axios.post('http://localhost:3000/authentication/logout')
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/authentication/logout`)
     localStorage.removeItem('user')
   }
   return (

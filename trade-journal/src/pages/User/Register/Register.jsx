@@ -27,7 +27,7 @@ function Register() {
     e.preventDefault();
     try {
       const register = await axios.post(
-        "http://localhost:3000/authentication/register",
+        `${import.meta.env.VITE_BACKEND_URL}/authentication/register`,
         registerUser
       );
       setSuccess(register.data);

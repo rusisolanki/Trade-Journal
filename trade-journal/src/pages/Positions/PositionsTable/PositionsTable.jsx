@@ -26,7 +26,7 @@ const PositionsTable = () => {
   useEffect(() => {
     const fetchTradeData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/trades/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/trades/${id}`);
         const trades = response.data;
         dispatch(tradeActions.change(trades));
         const filteredTrades = trades.filter(
@@ -43,7 +43,7 @@ const PositionsTable = () => {
 
   useEffect(() => {
     const fundsHandler = async () => {
-      const list = await axios.get(`http://localhost:3000/capital-deployed/${id}`)
+      const list = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/capital-deployed/${id}`)
       setFundsList(list.data[0])
       setAdjustmentsList(list.data[1])
     };

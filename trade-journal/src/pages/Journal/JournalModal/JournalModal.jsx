@@ -24,7 +24,7 @@ const NewJournalModal = () => {
   const submitHandler = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/journal`,
+        `${import.meta.env.VITE_BACKEND_URL}/journal`,
         journalData
       );
       console.log(response.data);

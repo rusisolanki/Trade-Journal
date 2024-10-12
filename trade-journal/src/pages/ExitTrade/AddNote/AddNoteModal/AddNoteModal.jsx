@@ -28,7 +28,7 @@ const AddNoteModal = () => {
   const submitHandler = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/add-note/${tradeID}`,
+        `${import.meta.env.VITE_BACKEND_URL}/add-note/${tradeID}`,
         newNote
       );
       console.log(response);

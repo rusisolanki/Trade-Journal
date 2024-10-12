@@ -13,7 +13,7 @@ const JournalList = () => {
   const user = JSON.parse(localStorage.getItem('user'))
   useEffect(() => {
     const fetchJournal = async () => {
-      const journalData = await axios.get(`http://localhost:3000/journal/${user.id}`);
+      const journalData = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/journal/${user.id}`);
       dispatch(journalActions.change(journalData.data));
     };
     

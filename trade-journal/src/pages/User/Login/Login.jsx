@@ -25,7 +25,7 @@ function Login() {
     e.preventDefault();
     try {
       const login = await axios.post(
-        "http://localhost:3000/authentication/login",
+        `${import.meta.env.VITE_BACKEND_URL}/authentication/login`,
         loginUser
       );
       localStorage.setItem('user', JSON.stringify(login.data))

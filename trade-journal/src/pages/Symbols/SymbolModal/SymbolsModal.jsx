@@ -34,7 +34,7 @@ const SymbolsModal = () => {
     console.log(newSymbol);
     try {
       const response = await axios.post(
-        "http://localhost:3000/symbols",
+        `${import.meta.env.VITE_BACKEND_URL}/symbols`,
         newSymbol
       );
       console.log(response);
