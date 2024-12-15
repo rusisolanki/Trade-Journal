@@ -1,8 +1,8 @@
 import {lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
-import Container from "react-bootstrap/esm/Container";
+import Container from "react-bootstrap/Container";
 import { LuPlus } from "react-icons/lu";
 import TradeModal from "../Trade/TradeModal/TradeModal";
 import { modalActions } from "../../store/store";

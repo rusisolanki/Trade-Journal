@@ -19,3 +19,14 @@ export const postExitTrade = (req, res) => {
         return res.status(201).json('Succeesful')
     })
 }
+
+export const deleteExitTrade = (req, res) => {
+    console.log(req.body.exitTradeID)
+    db.query('DELETE FROM journals.exit WHERE id = ?', req.body.exitTradeID, (err, result) => {
+        if(err){
+            return res.json(err)
+        }
+        return res.status(201).json('Exit Trade Deleted')
+    })
+}
+

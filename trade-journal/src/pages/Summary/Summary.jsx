@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
-import Container from "react-bootstrap/esm/Container";
+import Container from "react-bootstrap/Container";
 import classes from "./Summary.module.css";
 const SummaryTable = lazy(() => import("./SummaryTable/SummaryTable"));
 

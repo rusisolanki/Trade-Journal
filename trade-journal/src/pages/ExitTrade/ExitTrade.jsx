@@ -1,7 +1,7 @@
 import { Suspense, lazy, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Container from "react-bootstrap/esm/Container";
-import Button from "react-bootstrap/esm/Button";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 import classes from './ExitTrade.module.css'
 import { LuPlus } from "react-icons/lu";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";

@@ -1,6 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import PropTypes from 'prop-types'
 import axios from "axios";

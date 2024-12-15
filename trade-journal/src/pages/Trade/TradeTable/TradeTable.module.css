@@ -39,3 +39,13 @@
 .note{
     font-weight: 500;
 }
+.delete{
+    color: red;
+    background-color: transparent;
+    border: 1px solid red;
+}
+.delete:hover{
+    color: white;
+    background-color: red;
+    border: 1px solid red;
+}

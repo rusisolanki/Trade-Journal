@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { exitTradeActions } from "../../../store/store";
 import { headings } from "../../../constants/constants";
+import Button from "react-bootstrap/Button";
 
 const ExitTable = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,18 @@ const ExitTable = () => {
     };
     fetchExitTrade();
   }, [exitTradeData, tradeID, dispatch]);
+
+  const deleteHandler = async (exitTradeID) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/exit/${tradeID}/delete`,
+        {exitTradeID}
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // Check if data is still loading or if no matching entryTrade is found
   if (isLoading) {
@@ -241,6 +254,9 @@ const ExitTable = () => {
                 ))}
               </td>
               <td>{((exitTrade.exit_price - entryTrade[0].entry_price) / (entryTrade[0].entry_price - entryTrade[0].stoploss)).toFixed(1)}R</td>
+              <td>
+                  <Button onClick={() => deleteHandler(exitTrade.id)} className={classes.delete}>Delete</Button>
+              </td>
             </tr>
           ))}
            <tr>

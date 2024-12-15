@@ -1,8 +1,8 @@
 import { lazy, Suspense, useState } from "react";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
-import Container from "react-bootstrap/esm/Container";
+import Container from "react-bootstrap/Container";
 import classes from "./CapitalDeployed.module.css";
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 import { LuPlus } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/store";

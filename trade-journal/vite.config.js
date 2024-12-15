@@ -13,7 +13,7 @@ export default defineConfig({
   //     }
   //   }
   // }
-  build: {
-    commonjsOptions: { include: [] },
-  },
+  // build: {
+  //   commonjsOptions: { include: [] },
+  // },
 })

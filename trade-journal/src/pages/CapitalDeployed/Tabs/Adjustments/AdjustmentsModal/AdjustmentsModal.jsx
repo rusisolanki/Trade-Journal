@@ -1,7 +1,7 @@
 import JournalModal from "../../../../../components/Modal/Modal";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 import { useDispatch } from "react-redux";
 import { modalActions } from "../../../../../store/store";
 import { useState } from "react";

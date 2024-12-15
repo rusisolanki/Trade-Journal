@@ -1,8 +1,8 @@
 import { useEffect, lazy, Suspense } from "react";
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import classes from "./Symbols.module.css";
-import Container from "react-bootstrap/esm/Container";
+import Container from "react-bootstrap/Container";
 import { LuPlus } from "react-icons/lu";
 import SymbolsModal from "./SymbolModal/SymbolsModal";
 import axios from "axios";

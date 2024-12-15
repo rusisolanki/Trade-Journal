@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import JournalModal from "../../../components/Modal/Modal";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 import { modalActions } from "../../../store/store";
 import { useParams } from "react-router-dom";
 

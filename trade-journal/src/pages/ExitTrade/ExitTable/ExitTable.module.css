@@ -47,3 +47,13 @@
 .weightedAvg{
     font-size: 0.7em;
 }
+.delete{
+    color: red;
+    background-color: transparent;
+    border: 1px solid red;
+}
+.delete:hover{
+    color: white;
+    background-color: red;
+    border: 1px solid red;
+}

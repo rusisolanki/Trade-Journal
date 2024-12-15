@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import classes from "./Journal.module.css";
 import { LuPlus } from "react-icons/lu";
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 import JournalList from "./JournalList/JournalList";
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/store";

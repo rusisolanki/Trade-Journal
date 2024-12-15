@@ -33,9 +33,16 @@ export const postTrade = (req, res) => {
         return res.status(201).json('Data Entered Successfully')
     })
 }
-// export const deleteTrade = (req, res) => {
-//     res.json('This is trade')
-// }
+export const deleteTrade = (req, res) => {
+    const q = 'DELETE FROM trade WHERE id = ?'
+    console.log(req.body)
+    db.query(q, req.body.tradeID, (err, result) => {
+        if(err){
+            return res.send(err)
+        }
+        return res.json("Trade deleted")
+    })
+}
 
 export const editStoploss = (req, res) => {
    const q = "UPDATE trade SET current_stoploss = ? WHERE id = ?;"

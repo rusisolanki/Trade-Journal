@@ -1,4 +1,4 @@
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
@@ -39,7 +39,7 @@ const PositionsTable = () => {
     };
     fetchTradeData();
     // console.log(positionsData)
-  }, [positionsData, id]);
+  }, [positionsData]);
 
   useEffect(() => {
     const fundsHandler = async () => {
@@ -85,8 +85,8 @@ const PositionsTable = () => {
   const totalOpenRisk = positionsData.reduce((sum, trade) => {
     if (journalType === "Future")
       return (sum +=
-        (trade.entry_price - trade.stoploss) * trade.quantity * trade.lot_size);
-    else return (sum += (trade.entry_price - trade.stoploss) * trade.quantity);
+        (trade.entry_price - trade.current_stoploss) * trade.quantity * trade.lot_size);
+    else return (sum += (trade.entry_price - trade.current_stoploss) * trade.quantity);
   }, 0);
 
   return (
@@ -111,7 +111,7 @@ const PositionsTable = () => {
         <div className={classes.container}>
           <h6>Exposure</h6>
           <p className={classes.data}>
-            {totalExposure}{" "}
+            {totalExposure.toFixed(2)}{" "}
             <span className={classes.percentage}>
               ({tradeData[0] && tradeData[0].account_value ? ((totalExposure / tradeData[0].account_value) * 100).toFixed(2) : 0}
               %)
@@ -121,7 +121,7 @@ const PositionsTable = () => {
         <div className={classes.container}>
           <h6>Total Open Risk</h6>
           <p className={classes.data}>
-            {totalOpenRisk}{" "}
+            {totalOpenRisk.toFixed(2)}{" "}
             <span className={classes.percentage}>
               ({tradeData[0] && tradeData[0].account_value ? ((totalOpenRisk / tradeData[0].account_value) * 100).toFixed(2) : 0}
               %)

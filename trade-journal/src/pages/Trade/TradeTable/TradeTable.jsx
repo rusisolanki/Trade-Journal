@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Button from "react-bootstrap/esm/Button";
+import Button from "react-bootstrap/Button";
 import JournalTables from "../../../components/Table/JournalTables";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
@@ -17,7 +17,9 @@ const TradeTable = () => {
   useEffect(() => {
     const fetchTradeData = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/trades/${id}`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/trades/${id}`
+        );
         const tradeData = response.data;
         dispatch(tradeActions.change(tradeData));
       } catch (error) {
@@ -26,6 +28,18 @@ const TradeTable = () => {
     };
     fetchTradeData();
   }, [tradeData]);
+
+  const deleteHandler = async (tradeID) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/trades/delete`,
+        {tradeID}
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -193,6 +207,9 @@ const TradeTable = () => {
                   ) : (
                     0
                   )}
+                </td>
+                <td>
+                  <Button onClick={() => deleteHandler(trade.id)} className={classes.delete}>Delete</Button>
                 </td>
               </tr>
             ))}
